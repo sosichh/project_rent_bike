@@ -21,7 +21,7 @@ public class BikeRepository {
     
     
     public BikeRepository() throws IOException {
-        database = new File("database/bike.txt");
+        database = new File("database\\bike.txt");
         mapper = new ObjectMapper();
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
