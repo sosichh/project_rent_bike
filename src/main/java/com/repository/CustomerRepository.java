@@ -13,21 +13,21 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
 public class CustomerRepository {
 
-    // Файл, который является базой данных
+    
     private final File database;
-    // Маппер для чтения и записи объектов в файл
+    
     private final ObjectMapper mapper;
-    // Поле, которое хранит максимальный идентификатор, сохраннёный в БД
+    
     private int maxId;
 
-    public CustomerRepository () throws IOException { // конструктор нашего класса
-        database = new File("database/customer.txt");
+    public CustomerRepository () throws IOException { 
+        database = new File("database\\scustomer.txt");
         mapper = new ObjectMapper();
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        // Выясняем, какой идетификатор в БД на данный момент максимальный
-        List<Customer> customers = findAll(); // получаем спискок всех пользователей, к-рые сейчас хранятся в БД
+        
+        List<Customer> customers = findAll(); 
 
         if (!customers.isEmpty()) {
             Customer lastCustomer = customers.get(customers.size() - 1);
@@ -36,11 +36,11 @@ public class CustomerRepository {
     }
 
     public Customer save(Customer customer) throws IOException {
-        customer.setId(++maxId);  // идентификатор нового пользователя
-        List<Customer> customers = findAll(); // получаем спискок всех пользователей, к-рые сейчас хранятся в БД
-        customers.add(customer); // добавляем  нового пользователя
-        mapper.writeValue(database, customers); // в БД записываем всех прользователей
-        return customer; // возвращаем пользователя, к-рого добавили
+        customer.setId(++maxId);  
+        List<Customer> customers = findAll(); 
+        customers.add(customer); 
+        mapper.writeValue(database, customers); 
+        return customer; 
     }
 
     public List<Customer> findAll() throws IOException {
@@ -63,7 +63,7 @@ public class CustomerRepository {
 
     public void update(Customer customer) throws IOException {
         int id = customer.getId();
-        String newName = customer.getName(); // Редактирование = замена имени
+        String newName = customer.getName(); 
 
         List<Customer> customers = findAll();
         customers
